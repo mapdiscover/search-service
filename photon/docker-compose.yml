@@ -1,0 +1,13 @@
+version: "3" 
+
+services:
+  photon:
+    build:
+      context: ./bin
+      dockerfile: Dockerfile
+    ports:
+      - "2322:2322"
+    restart: unless-stopped
+    volumes:
+    #local filesystem: containers' filesystem
+      - ./photon_data:/app/photon_data
