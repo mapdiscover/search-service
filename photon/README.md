@@ -11,7 +11,7 @@ $ export country=de
 $ bash ./downloadIndex.sh
 ```
 
-~~If you want to download the search engine for more countries then execute the script again with a new short code `country` . The script downloads an archive and calls an decompress program which also handles the merging~~ (Untested)
+~~If you want to download the search engine for more countries then execute the script again with a new short code `country` . The script downloads an archive and calls an decompress program which also handles the merging~~ (This does not work)
 
 ## Starting
 
