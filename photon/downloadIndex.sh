@@ -1,10 +1,6 @@
 #!/bin/bash
 # Made with love by Sören Reinecke (Trufi Association e.V.)
 
-# Requirements:
-#  - pbzip2
-#  - tar
-
 # Inspiration:
 #   - https://github.com/komoot/photon
 #   - https://download1.graphhopper.com/public/extracts/
@@ -26,18 +22,22 @@ then
 fi;
 
 echo "country has been specified, proceeding with download..."
-filename="photon-db-$country-latest.tar.bz2"
-wget $url/$country/$filename
+filenameBZ2="photon-db-$country-latest.tar.bz2"
+filenameTar="photon-db-$country-latest.tar"
+wget $url/$country/$filenameBZ2
 
 echo "download finish, checking if file exists..."
-if [ -d "$filename" ];
+if [ -d "$filenameBZ2" ];
 then
-	echo -e "  \033[0;31mAn error while downloading from $url/$country/$filename occurred\033[0;m"
+	echo -e "  \033[0;31mAn error while downloading from $url/$country/$filenameBZ2 occurred\033[0;m"
 	exit 2
 fi;
 
-echo "file exists, extracting..."
-pbzip2 -cd $filename | tar x
+echo "file exists"
+echo "extracting the bz2 archive..."
+pbzip2 -d $filenameBZ2
+echo "extracting the tar archive..."
+tar -xf $filenameTar
 exitcode=$?
 echo "Extraction finish, execution finish"
 exit $exitcode # return the exit code of the tar command
